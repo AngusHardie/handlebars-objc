@@ -34,6 +34,11 @@
 - (id)entity;
 @end
 
+
+@interface NSObject(validDataKeys)
+- (NSArray*)validDataKeys;
+@end
+
 @implementation HBObjectPropertyAccess
 
 + (id /* NSSet or nil */) objectiveCPropertyNamesForClass:(Class)class
@@ -135,7 +140,19 @@
 
 + (BOOL) isKey:(NSString*)key validForKVCOnObject:(id)object
 {
-    return [[self validKeysForClass:[object class]] containsObject:key] || [[self validKeysForInstance:object] containsObject:key];
+    return [[self validKeysForClass:[object class]] containsObject:key] || [self validKeysForObject:object] || [[self validKeysForInstance:object] containsObject:key];
+}
+
++ (id) validKeysForObject:(id)object
+{
+    
+    if ([object respondsToSelector:@selector(validDataKeys)]) {
+        
+        return [object validDataKeys];
+    }
+    
+    return nil;
+    
 }
 
 + (id) valueForKey:(NSString *)key onObject:(id)object
@@ -147,6 +164,8 @@
     if ([self isKey:key validForKVCOnObject:object]) {
         return [object valueForKey:key];
     }
+    
+    NSLog(@"key %@ is not valid on %@",key,object);
     
     return nil;
 }

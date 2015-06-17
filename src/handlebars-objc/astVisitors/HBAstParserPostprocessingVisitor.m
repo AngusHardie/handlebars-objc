@@ -48,7 +48,7 @@
     NSInteger i = [string length] - 1;
     NSInteger l = i;
     while ((i >= 0)
-           && [[NSCharacterSet whitespaceCharacterSet] characterIsMember:[string characterAtIndex:i]]) {
+           && [[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[string characterAtIndex:i]]) {
         i--;
     }
     
@@ -63,7 +63,7 @@
     
     NSInteger i = 0;
     while ((i < [string length])
-           && [[NSCharacterSet whitespaceCharacterSet] characterIsMember:[string characterAtIndex:i]]) {
+           && [[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[string characterAtIndex:i]]) {
         i++;
     }
     
