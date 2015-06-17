@@ -1,4 +1,12 @@
-[![Travis Build Status](https://api.travis-ci.org/fotonauts/handlebars-objc.png?branch=master)](https://travis-ci.org/fotonauts/handlebars-objc)
+
+
+
+awh branch
+==========
+
+Please use the original branch or a better fork
+This branch is being modified for a particular purpose only
+
 
 handlebars-objc
 ===============
