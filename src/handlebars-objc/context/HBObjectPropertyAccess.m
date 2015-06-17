@@ -37,6 +37,7 @@
 
 @interface NSObject(validDataKeys)
 - (NSArray*)validDataKeys;
+- (NSArray*)allKeys;
 @end
 
 @implementation HBObjectPropertyAccess
@@ -149,6 +150,10 @@
     if ([object respondsToSelector:@selector(validDataKeys)]) {
         
         return [object validDataKeys];
+    }
+    
+    if ([object respondsToSelector:@selector(allKeys)]) {
+        return [object allKeys];
     }
     
     return nil;
